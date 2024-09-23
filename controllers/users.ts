@@ -7,10 +7,10 @@ export const GetUsers = async (req: Request, res: Response) => {
 }
 
 export const GetUser = (req: Request, res: Response) => {
-  const { id } = req.params;+
+  const { id } = req.params;
 
   res.json({
-    msg: 'getPokemon',
+    msg: 'getUser',
     id
   });
 }

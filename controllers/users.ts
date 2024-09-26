@@ -25,7 +25,16 @@ export const GetUser = async(req: Request, res: Response) => {
 
 export const PostUser = async(req: Request, res: Response) => {
     try {
-        const newUser = await User.create(req.body);
+        const {username, password} = req.body;
+        const data = {
+            username: username,
+            password: password,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString(),
+        }
+
+        const newUser = await User.create(data);
+        
         res.status(201).json(newUser);
     } catch (error) {
         res.status(500).json({ error: 'Error al crear el registro' });

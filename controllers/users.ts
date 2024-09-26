@@ -32,6 +32,33 @@ export const PostUser = async(req: Request, res: Response) => {
     }
 }
 
+export const PostLogin = async(req: Request, res: Response) => {
+    try {
+        const {username, password} = req.body;
+        // Consulta a la base de datos
+        const user = await User.findOne({ where: { username } });
+        
+        if (!user) {
+            res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
+        // Aquí deberías comparar las contraseñas de manera segura (por ejemplo, con bcrypt)
+        const isPasswordValid = password === user?.dataValues.password;  // Comparación simplificada (mejor usar bcrypt)
+
+        if (!isPasswordValid) {
+            res.status(500).json({ error: 'Contraseña incorrecta' });
+        }
+
+        res.status(201).json({
+            id: user?.dataValues.id,
+            username: user?.dataValues.username
+        });
+    } catch (error) {
+        console.error('Error al consultar la base de datos:', error);
+        res.status(500).json({ error: 'Error al validar las credenciales' });
+    }
+}
+
 export const PutUser = async(req: Request, res: Response) => {
     try {
         const [updatedRows] = await User.update(req.body, {

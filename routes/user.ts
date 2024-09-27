@@ -7,7 +7,7 @@ router.get('/all',    GetUsers);
 router.get('/:id',     GetUser);
 router.post('/login',  PostLogin);
 router.post('/',      PostUser);
-router.put('/:id',     PutUser);
+router.put('/',     PutUser);
 router.delete('/:id',  DeleteUser);
 
 export default router;

@@ -23,7 +23,7 @@ export const GetUser = async(req: Request, res: Response) => {
     }
 }
 
-export const PostUser = async(req: Request, res: Response) => {
+export const AddUser = async(req: Request, res: Response) => {
     try {
         const {username, password} = req.body;
 
@@ -47,7 +47,7 @@ export const PostUser = async(req: Request, res: Response) => {
     }
 }
 
-export const PostLogin = async(req: Request, res: Response) => {
+export const Login = async(req: Request, res: Response) => {
     try {
         const {username, password} = req.body;
 
@@ -73,7 +73,7 @@ export const PostLogin = async(req: Request, res: Response) => {
     }
 }
 
-export const PutUser = async(req: Request, res: Response) => {
+export const UpdateUser = async(req: Request, res: Response) => {
     try {
         const {username, password} = req.body;
         const user = await User.findOne({ where: { username } });

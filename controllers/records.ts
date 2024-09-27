@@ -23,7 +23,7 @@ export const GetRecord = async(req: Request, res: Response) => {
     }
 }
 
-export const PostRecord = async (req: Request, res: Response) => {
+export const AddRecord = async (req: Request, res: Response) => {
     try {
         const {username, action} = req.body;
         const data = {
@@ -39,7 +39,7 @@ export const PostRecord = async (req: Request, res: Response) => {
     }
 }
 
-export const PutRecord = async (req: Request, res: Response) => {
+export const UpdateRecord = async (req: Request, res: Response) => {
     try {
         const [updatedRows] = await Record.update(req.body, {
             where: { id: req.params.id }
